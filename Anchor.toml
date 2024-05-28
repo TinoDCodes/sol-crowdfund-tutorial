@@ -11,8 +11,8 @@ sol_crowdfund_tutorial = "2N6QZDfjFzCKYVJ9pELvv3S5y1KVxxDTyzDuyAdv5RaV"
 url = "https://api.apr.dev"
 
 [provider]
-cluster = "Localnet"
-wallet = "~/.config/solana/id.json"
+cluster = "devnet"
+wallet = "./id.json"
 
 [scripts]
 test = "yarn run ts-mocha -p ./tsconfig.json -t 1000000 tests/**/*.ts"
