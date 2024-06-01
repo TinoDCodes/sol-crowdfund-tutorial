@@ -146,6 +146,25 @@ const App = () => {
     }
   };
 
+  const withdraw = async (publicKey) => {
+    try {
+      const provider = getProvider();
+      const program = new Program(idl, provider);
+
+      await program.rpc.withdraw(new BN(0.1 * LAMPORTS_PER_SOL), {
+        accounts: {
+          campaign: publicKey,
+          user: provider.wallet.publicKey,
+        },
+      });
+
+      console.log("Withdrawal successful!");
+      getAllCampaigns();
+    } catch (error) {
+      console.error("Unable to withdraw funds!", error);
+    }
+  };
+
   useEffect(() => {
     const onLoad = async () => {
       await checkWalletConnected();
@@ -185,14 +204,25 @@ const App = () => {
                 </h4>
               </div>
 
-              <Button
-                variant="contained"
-                color="success"
-                className="donate-btn"
-                onClick={() => donate(campaign.pubkey)}
-              >
-                Donate
-              </Button>
+              <div className="campaign-item-btns">
+                <Button
+                  variant="contained"
+                  color="success"
+                  className="donate-btn"
+                  onClick={() => donate(campaign.pubkey)}
+                >
+                  Donate
+                </Button>
+
+                <Button
+                  variant="contained"
+                  color="error"
+                  className="donate-btn"
+                  onClick={() => withdraw(campaign.pubkey)}
+                >
+                  Withdraw
+                </Button>
+              </div>
             </article>
           ))}
         </div>

@@ -51,7 +51,15 @@
   padding-inline: 4rem;
   padding-block: 0.1rem;
 }
+
+.campaign-item-btns {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+}
+
 .donate-btn {
   height: fit-content;
-  align-self: center;
 }
